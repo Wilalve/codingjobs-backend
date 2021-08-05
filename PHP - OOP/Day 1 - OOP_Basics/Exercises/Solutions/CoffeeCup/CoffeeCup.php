@@ -6,9 +6,12 @@ class CoffeeCup
     private $temperature;
     private $volume;
 
-    public function __construct($volume)
+    public function __construct($volume, $brand, $temperature)
     {
         $this->volume = $volume;
+        $this->quantity = $volume;
+        $this->brand = $brand;
+        $this->temperature = $temperature;
     }
 
     //getter & setter
@@ -16,36 +19,42 @@ class CoffeeCup
     {
         return $this->quantity;
     }
-    public function set_quantity($quantity)
-    {
-        $this->quantity = $quantity;
-    }
 
     public function get_brand()
     {
         return $this->brand;
-    }
-    public function set_brand($brand)
-    {
-        $this->brand = $brand;
     }
 
     public function get_temperature()
     {
         return $this->temperature;
     }
-    public function set_temperature($temperature)
-    {
-        $this->temperature = $temperature;
-    }
 
     public function sip($qtyToDrink)
     {
-        return 'Remains : ' . $this->quantity - $qtyToDrink . ' cl.';
+        if ($this->quantity < $qtyToDrink)
+            $this->quantity = 0;
+        else
+            $this->quantity -= $qtyToDrink;
+
+        return 'Remains : ' . $this->quantity . ' cl.';
     }
 
     public function refill()
     {
+        $this->quantity = $this->volume;
         return 'Mug full again';
+    }
+
+    public function reheat($deg)
+    {
+        $this->temperature += $deg;
+        return 'Coffee warmed up. Current temperature : ' . $this->temperature . ' °c';
+    }
+
+    public function cooldown($deg)
+    {
+        $this->temperature -= $deg;
+        return 'Coffee cooldown up. Current temperature : ' . $this->temperature . ' °c';
     }
 }
