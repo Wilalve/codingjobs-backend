@@ -8,6 +8,7 @@ class Character
     private $defPoints;
     private $warCry;
     private $race;
+    private $equipment;
 
     public function __construct($race, $name)
     {
@@ -25,5 +26,21 @@ class Character
     public function get_warcry()
     {
         return $this->warCry;
+    }
+
+    // Manage equipment
+    public function add_equipment(Equipment $equip)
+    {
+        $this->equipment = $equip;
+    }
+
+    public function remove_equipment()
+    {
+        $this->equipment = null;
+    }
+
+    public function display_equipment()
+    {
+        echo $this->equipment;
     }
 }
