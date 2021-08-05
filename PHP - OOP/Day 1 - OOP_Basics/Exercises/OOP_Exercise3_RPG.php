@@ -70,8 +70,7 @@
 	Change your function to 'add'/'remove'/'display' an equipement.
 	Now it will add/remove/display to the inventory.
 
-
-
+*/
 
 
 
